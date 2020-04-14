@@ -209,15 +209,15 @@ request:
 
 <div class=example>
 ```js
-let signal = new AbortController();
+let abortController = new AbortController();
 
 setTimeout(() => {
   // abort after two minutes
-  signal.abort();
+  abortController.abort();
 }, 2 * 60 * 1000);
   
 let {code, type} = await navigator.credentials.get({
-  abort: signal,
+  signal: abortController.signal,
   otp: {
     transport: ["sms"]
   }
